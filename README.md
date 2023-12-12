@@ -1,2 +1,2 @@
 # leetcode
-Soluções do LeetCode
+Soluções do LeetCode: https://leetcode.com/problemset/
