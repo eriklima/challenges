@@ -5,19 +5,21 @@ import "fmt"
 var seq = []int{}
 
 func main() {
-	fibo(10)
-	fmt.Println(seq)
+	res := fibo(10)
+	fmt.Println(res)
 }
 
-func fibo(n int) {
-	if n <= 1 {
+func fibo(n int) []int {
+	if n == 1 {
 		seq = append(seq, 0)
-	} else {
+	} else if n >= 2 {
 		seq = append(seq, 0, 1)
 		for i := 2; i < n; i++ {
 			seq = append(seq, seq[i - 2] + seq[i - 1])
 		}
 	}
+
+	return seq
 }
 
 // Recurserve mode
@@ -32,13 +34,13 @@ var seq = []int{}
 func main() {
 	n := 10
 
-	if n <= 1 {
+	if n == 1 {
 		seq = append(seq, 0)
-	} else {
+	} else if n >= 2 {
 		seq = append(seq, 0, 1)
 		fibo(n)
 	}
-
+	
 	fmt.Println(seq)
 }
 
