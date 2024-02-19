@@ -5,15 +5,24 @@ Then, it sorts the entire array in descending order based on the length of the i
 */
 
 function sortInnerAndOuter(array) {
-    var sort
+    const isUniqueType = uniqueType(array)
+    const arrays = new Map()
 
-    if (uniqueType(array)) {
-        sort = sortUniqueType(array)
-    } else {
-        sort = sortDifferenceType(array)
-    }
+    array.forEach((innerArray) => {
+        if (isUniqueType) {
+            innerArray.sort()
+        }
 
-    return sort
+        const innerSize = innerArray.length
+
+        if (!arrays.has(innerSize)) {
+            arrays.set(innerSize, [])
+        }
+
+        arrays.set(innerSize, arrays.get(innerSize).concat([innerArray]))
+    })
+
+    return sort(arrays)
 }
 
 function uniqueType(array) {
@@ -28,46 +37,15 @@ function uniqueType(array) {
     return true
 }
 
-function sortUniqueType(array) {
-    var auxResult = []
-    var sizes = []
-
-    array.forEach((innerArray, i) => {
-        auxArray = innerArray.sort()
-        auxSize = innerArray.length
-        sizes.push(auxSize)
-        auxResult.push(auxArray)
-    })
-
-    return sort(auxResult, sizes)
-}
-
-function sort(auxResult, sizes) {
-    sizes.sort().reverse()
+function sort(arrays) {
+    arrays = new Map([...arrays.entries()].sort().reverse())
     var result = []
 
-    sizes.forEach((size) => {
-        for (var i = 0; i < auxResult.length; i++) {
-            if (size === auxResult[i].length) {
-                result.push(auxResult[i])
-                auxResult.splice(i, 1)
-                break
-            }
-        }
+    arrays.forEach((innerArray) => {
+        result = result.concat(innerArray)
     })
 
     return result
-}
-
-function sortDifferenceType(array) {
-    var sizes = []
-
-    array.forEach((innerArray, i) => {
-        auxSize = innerArray.length
-        sizes.push(auxSize)
-    })
-
-    return sort(array, sizes)
 }
 
 // Example usage
