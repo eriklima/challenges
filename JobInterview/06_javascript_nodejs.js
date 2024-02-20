@@ -35,6 +35,8 @@ const value = arr.find((value, index) => value % 2 == 0)
 console.log(`find: ${value}`)
 
 // How to define a "Default Parameter" in a function?
+
+// Non-ES6 mode
 function log(value, base) {
     // Check the "base" parameter is "undefined"
     base = typeof base === "undefined" ? 2 : base
@@ -44,6 +46,14 @@ function log(value, base) {
     // continue...
 }
 log(16)
+
+// ES6 mode
+function logEs6(value, base = 10) {
+    console.log(`Log base ${base}`)
+
+    // continue...
+}
+logEs6(1000)
 
 /*
 What is the difference between node.js require and ES6 import and export?
