@@ -1,0 +1,57 @@
+###
+
+GET http://localhost:3000
+
+###
+
+POST http://localhost:3000/login
+
+{
+    "username": "erik",
+    "password": "123456"
+}
+
+###
+
+POST http://localhost:3000/logout
+
+{
+    "username": "erik"
+}
+
+###
+
+GET http://localhost:3000/news
+
+###
+
+POST http://localhost:3000/news
+
+{
+    "token": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+    "title": "Minhas Economias",
+    "text": "Como organizar"
+}
+
+###
+
+PUT http://localhost:3000/news
+
+{
+    "token": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+    "id": "88ab94e9-446a-46d1-bb55-22881a08c669",
+    "title": "Minhas Economias",
+    "text": "Como organizar suas finanças de forma eficiente."
+}
+
+###
+
+DELETE http://localhost:3000/news
+
+{
+    "token": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+    "id": "88ab94e9-446a-46d1-bb55-22881a08c669"
+}
+
+###
+
