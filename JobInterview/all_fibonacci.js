@@ -3,7 +3,7 @@
 
 // --------------------------------------------------------------
 
-function fib(n) {
+function fib4(n) {
   function fibDoubling(n) {
     if (n === 0n) {
       return [0n, 1n];
@@ -24,75 +24,72 @@ function fib(n) {
   return fibDoubling(BigInt(n))[0];
 }
 
-fib(100);
+console.log(fib4(100));
 
 // --------------------------------------------------------------
 
-function fib(n) {
+function fib3(n) {
   if (n == 0) {
-    console.log(0)
+    console.log(0);
     return n;
   }
-  
+
   let prev = 0n;
   let curr = 1n;
-  
+
   console.log(0);
   console.log(1);
-  
+
   // for (let i = 2; i <= n; i++) {
   //   const next = prev + curr;
   //   prev = curr;
   //   curr = next;
   //   console.log(next);
   // }
-  
+
   for (let i = 2; i <= n; i++) {
     [prev, curr] = [curr, prev + curr];
     console.log(curr);
   }
-  
+
   return curr;
 }
 
-fib(100);
+console.log(fib3(100));
 
 // --------------------------------------------------------------
 
-const memo = [];
+function fib2(n) {
+  function fibMemo(n, memo = [0, 1]) {
+    if (n <= 1) {
+      return n;
+    }
 
-function fib(n) {
-  if (memo[n]) {
+    if (memo[n]) {
+      return memo[n];
+    }
+
+    memo[n] = fibMemo(n - 2n, memo) + fibMemo(n - 1n, memo);
+
+    console.log(memo);
+
     return memo[n];
   }
-  
-  if (n <= 1) {
-    memo[0] = 0;      
-    if (n == 1) {
-      memo[1] = 1;
-    }    
-    return n;
-  }
-  
-  memo[n] = fib(n-2) + fib(n-1);
-  
-  return memo[n];
+  return fibMemo(BigInt(n));
 }
 
-fib(10);
-
-console.log(memo);
+console.log(fib2(100));
 
 // --------------------------------------------------------------
 
-function fib(n) {
+function fib1(n) {
   if (n <= 1) {
     return n;
   }
 
-  return fib(n-2) + fib(n-1);
+  return fib1(n - 2) + fib1(n - 1);
 }
 
-fib(10);
+console.log(fib1(10));
 
 // --------------------------------------------------------------
