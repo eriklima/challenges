@@ -4,7 +4,7 @@
  * @param {number} x
  * @return {boolean}
  */
-var isPalindrome = function (x) {
+var isPalindromeA = function (x) {
   if (x < 0 || (x !== 0 && x % 10 === 0)) {
     return false;
   }
@@ -23,7 +23,7 @@ var isPalindrome = function (x) {
  * @param {number} x
  * @return {boolean}
  */
-var isPalindrome = function (x) {
+var isPalindromeB = function (x) {
   if (x < 0) {
     return false;
   }
@@ -49,7 +49,7 @@ var isPalindrome = function (x) {
  * @param {number} x
  * @return {boolean}
  */
-var isPalindrome = function (x) {
+var isPalindromeC = function (x) {
   if (x < 0) {
     return false;
   }
@@ -70,3 +70,29 @@ var isPalindrome = function (x) {
 
   return left >= right;
 };
+
+function bench(name, fn, inputs, runs = 5_000_000) {
+  let sink = 0;
+
+  const t0 = performance.now();
+
+  for (let i = 0; i < runs; i++) {
+    sink += fn(inputs[i % inputs.length]) ? 1 : 0;
+  }
+
+  const t1 = performance.now();
+
+  console.log(`${name}: ${(t1 - t0).toFixed(1)} ms (sink=${sink})`);
+}
+
+const inputs = [121, -121, 10, 1221, 2147447412, 1234567, 0, 1000];
+
+bench("AlgoritmoA", isPalindromeA, inputs);
+bench("AlgoritmoB", isPalindromeB, inputs);
+bench("AlgoritmoC", isPalindromeC, inputs);
+
+/*
+AlgoritmoA: 41.2 ms (sink=2500000)
+AlgoritmoB: 127.2 ms (sink=2500000)
+AlgoritmoC: 54.4 ms (sink=2500000)
+*/
